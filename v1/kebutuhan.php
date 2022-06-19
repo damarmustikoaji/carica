@@ -5,25 +5,35 @@ require_once('../connection.php');
 $db = new DbConnection();
 $connection = $db->getdbconnect();
 $request_method=$_SERVER["REQUEST_METHOD"];
-$a=array();
-$b=array();
-$header = apache_request_headers();
-foreach ($header as $headers => $value) {
-    array_push($a, $headers, $value);
-}
-$hasil = keywordnya($a[1]);
+// $a=array();
+// $b=array();
+// $header = apache_request_headers();
+// foreach ($header as $headers => $value) {
+//     array_push($a, $headers, $value);
+// }
+$hasil = keywordnya($_SERVER['HTTP_TOKEN']);
 
 // echo $hasil;
 
-foreach($_SERVER as $key => $valuex) {
-    if(strpos($key, 'HTTP_') === 0) {
-        $headers = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
-        echo $headers." : ". $i[$headers] = $valuex . "<br>";
-        array_push($b, $headers, $valuex);
-    }
-}
+// foreach($_SERVER as $key => $valuex) {
+//     if(strpos($key, 'HTTP_') === 0) {
+//         $headers = str_replace(' ', '-');
+//         echo $headers." : ". $i[$headers] = $valuex . "<br>";
+//         // array_push($b, $headers." : ". $i[$headers] = $valuex);
+//         // array_push($b, $headers, $valuex);
+//     }
+// }
 
-echo $b[1];
+// foreach ($_SERVER as $headers => $value) {
+//     echo "$headers: $value <br>";
+// }
+
+// echo $_SERVER['HTTP_TOKEN'];
+
+// foreach($b as $bcek => $bvalue) {
+//     echo $bcek;
+// }
+
 //=========================================
 
     switch($request_method) {
