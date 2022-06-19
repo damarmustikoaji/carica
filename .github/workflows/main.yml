@@ -6,7 +6,7 @@ on:
     branches: [ master ]
 
 env:
-  CARICAAPPS_URL: ${{ secrets.CARICAAPPS_URL }}
+  CARICAPPS_URL: ${{ secrets.CARICAPPS_URL }}
 
 jobs:
   deploy:
@@ -19,11 +19,6 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APPS_NAME}} #Must be unique in Heroku
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           env_file: ".env"
-        # env:
-        #   HOST: ${{secrets.CLEARDB_HOST}}
-        #   USERNAME: ${{secrets.CLEARDB_USERNAME}}
-        #   PASSWORD: ${{secrets.CLEARDB_PASSWORD}}
-        #   DATABASE: ${{secrets.CLEARDB_DATABASE}}
  
   health:
       needs: deploy
@@ -31,4 +26,4 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - name: Check Health
-          run: curl --location --request GET '${{secrets.CARICAAPPS_URL}}/v1/ping'
+          run: curl --location --request GET '${{secrets.CARICAPPS_URL}}/v1/ping'
