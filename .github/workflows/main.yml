@@ -6,10 +6,10 @@ on:
     branches: [ master ]
 
 env:
-  HOST:         ${{ secrets.CLEARDB_HOST }}
-  USERNAME:     ${{ secrets.CLEARDB_USERNAME }}
-  PASSWORD:     ${{ secrets.CLEARDB_PASSWORD }}
-  DATABASE:     ${{ secrets.CLEARDB_DATABASE }}
+  HOST:           ${{ secrets.CLEARDB_HOST }}
+  USERNAME:       ${{ secrets.CLEARDB_USERNAME }}
+  PASSWORD:       ${{ secrets.CLEARDB_PASSWORD }}
+  DATABASE:       ${{ secrets.CLEARDB_DATABASE }}
   CARICAAPPS_URL: ${{ secrets.CARICAAPPS_URL }}
 
 jobs:
@@ -24,10 +24,10 @@ jobs:
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           env_file: ".env"
         env:
-          HOST: ${{secrets.HOST}}
-          USERNAME: ${{secrets.USERNAME}}
-          PASSWORD: ${{secrets.PASSWORD}}
-          DATABASE: ${{secrets.DATABASE}}
+          HOST:     ${{ secrets.CLEARDB_HOST }}
+          USERNAME: ${{ secrets.CLEARDB_USERNAME }}
+          PASSWORD: ${{ secrets.CLEARDB_PASSWORD }}
+          DATABASE: ${{ secrets.CLEARDB_DATABASE }}
   health:
       needs: deploy
       runs-on: ubuntu-latest
