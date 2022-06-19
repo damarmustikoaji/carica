@@ -31,4 +31,4 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - name: Check Health
-          run: curl --location --request GET '${{CARICAAPPS_URL}}/v1/ping'
+          run: curl --location --request GET '${{secrets.CARICAAPPS_URL}}/v1/ping'
