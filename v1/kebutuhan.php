@@ -13,12 +13,12 @@ foreach ($header as $headers => $value) {
 }
 $hasil = keywordnya($a[1]);
 
-echo $hasil;
+// echo $hasil;
 
 foreach($_SERVER as $key => $valuex) {
     if(strpos($key, 'HTTP_') === 0) {
         $headers = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
-        // echo $headers." : ". $i[$headers] = $valuex . "<br>";
+        echo $headers." : ". $i[$headers] = $valuex . "<br>";
         array_push($b, $headers, $valuex);
     }
 }
