@@ -6,6 +6,7 @@ $db = new DbConnection();
 $connection = $db->getdbconnect();
 $request_method=$_SERVER["REQUEST_METHOD"];
 $a=array();
+$b=array();
 $header = apache_request_headers();
 foreach ($header as $headers => $value) {
     array_push($a, $headers, $value);
@@ -13,6 +14,16 @@ foreach ($header as $headers => $value) {
 $hasil = keywordnya($a[1]);
 
 echo $hasil;
+
+foreach($_SERVER as $key => $valuex) {
+    if(strpos($key, 'HTTP_') === 0) {
+        $headers = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
+        // echo $headers." : ". $i[$headers] = $valuex . "<br>";
+        array_push($b, $headers, $valuex);
+    }
+}
+
+echo $b[1];
 //=========================================
 
     switch($request_method) {
