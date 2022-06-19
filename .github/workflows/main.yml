@@ -7,10 +7,6 @@ on:
 
 env:
   CARICAAPPS_URL: ${{ secrets.CARICAAPPS_URL }}
-  HOST: ${{ secrets.CLEAR_DB_HOST }}
-  USERNAME: ${{ secrets.CLEAR_DB_USERNAME }}
-  PASSWORD: ${{ secrets.CLEAR_DB_PASSWORD }}
-  DATABASE: ${{ secrets.CLEAR_DB_DATABASE }}
 
 jobs:
   deploy:
@@ -24,10 +20,10 @@ jobs:
           heroku_email: ${{secrets.HEROKU_API_EMAIL}}
           env_file: ".env"
         env:
-          HOST: ${{secrets.HOST}}
-          USERNAME: ${{secrets.USERNAME}}
-          PASSWORD: ${{secrets.PASSWORD}}
-          DATABASE: ${{secrets.DATABASE}}
+          HOST: ${{secrets.CLEARDB_HOST}}
+          USERNAME: ${{secrets.CLEARDB_USERNAME}}
+          PASSWORD: ${{secrets.CLEARDB_PASSWORD}}
+          DATABASE: ${{secrets.CLEARDB_DATABASE}}
  
   health:
       needs: deploy
@@ -35,4 +31,4 @@ jobs:
       steps:
         - uses: actions/checkout@v2
         - name: Check Health
-          run: curl --location --request GET '${{secrets.CARICAAPPS_URL}}/v1/ping'
+          run: curl --location --request GET '${{CARICAAPPS_URL}}/v1/ping'
