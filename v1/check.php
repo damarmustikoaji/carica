@@ -9,9 +9,8 @@ switch($request_method) {
         break;
     default:
     // Invalid Request Method
-    header('Content-Type: application/json');
-    header("HTTP/1.0 501 Not Implemented");
-    break;
+        default_response();
+        break;
 }
 
 function check_health() {
@@ -24,4 +23,13 @@ function check_health() {
     echo json_encode($response);
     }
 
+function default_response() {
+    $response=array(
+       'status' => "99",
+       'pesan' =>'Not Found'
+    );
+    echo json_encode($response);
+    header('Content-Type: application/json');
+    header("HTTP/1.0 404 Not Found");
+}
 ?>

@@ -5,26 +5,36 @@ require_once('../connection.php');
 $db = new DbConnection();
 $connection = $db->getdbconnect();
 $request_method=$_SERVER["REQUEST_METHOD"];
+$a=array();
+$header = apache_request_headers();
+foreach ($header as $headers => $value) {
+    array_push($a, $headers, $value);
+}
+$hasil = keywordnya($a[1]);
 //=========================================
 
-switch($request_method) {
-    case 'GET':
-        if(!empty($_GET["id"])) {
-            $id=$_GET["id"];
-            get_kebutuhan_detail($id);
-        }
-        else {
-            get_kebutuhan_list();
-        }
-        header('Content-Type: application/json');
-        break;
-    default:
-    // Invalid Request Method
-        default_response();
-        header('Content-Type: application/json');
-        header("HTTP/1.0 501 Not Implemented");
-        break;
-}
+    switch($request_method) {
+        case 'GET':
+            if ($hasil == 1) {
+                if(!empty($_GET["id"])) {
+                    $id=$_GET["id"];
+                    get_kebutuhan_detail($id);
+                }
+                else {
+                    get_kebutuhan_list();
+                    } 
+            }
+            else {
+                unauthorized_response();
+            }
+            header('Content-Type: application/json');
+            break;
+        default:
+        // Invalid Request Method
+            default_response();
+            header('Content-Type: application/json');
+            break;
+    }
 
 function get_kebutuhan_detail($id) {
     global $connection;
@@ -86,9 +96,39 @@ function get_kebutuhan_list() {
 function default_response() {
     $response=array(
        'status' => "99",
-       'pesan' =>'Error'
+       'pesan' =>'Not Found'
     );
     echo json_encode($response);
+    header('Content-Type: application/json');
+    header("HTTP/1.0 404 Not Found");
+}
+
+function unauthorized_response() {
+    $response=array(
+       'status' => "99",
+       'pesan' =>'Unauthorized'
+    );
+    echo json_encode($response);
+    header("HTTP/1.0 401 Unauthorized");
+}
+
+function keywordnya($key) {
+    global $connection;
+    $keynya = [];
+    if($key != '') {
+    $query="SELECT * FROM keyword WHERE value='".$key."' ";
+    }
+    $result=mysqli_query($connection, $query);
+    while($row=mysqli_fetch_object($result))
+    {
+       $keynya[] =$row;
+    }
+    if($keynya){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 ?>
