@@ -11,6 +11,8 @@ foreach ($header as $headers => $value) {
     array_push($a, $headers, $value);
 }
 $hasil = keywordnya($a[1]);
+
+echo $hasil;
 //=========================================
 
     switch($request_method) {
