@@ -6,10 +6,6 @@ on:
     branches: [ master ]
 
 env:
-  HOST:           ${{ secrets.CLEARDB_HOST }}
-  USERNAME:       ${{ secrets.CLEARDB_USERNAME }}
-  PASSWORD:       ${{ secrets.CLEARDB_PASSWORD }}
-  DATABASE:       ${{ secrets.CLEARDB_DATABASE }}
   CARICAAPPS_URL: ${{ secrets.CARICAAPPS_URL }}
 
 jobs:
@@ -20,14 +16,14 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: ${{secrets.HEROKU_APPS_NAME}} #Must be unique in Heroku
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          heroku_app_name: ${{secrets.HEROKU_API_NAME}} #Must be unique in Heroku
+          heroku_email: ${{secrets.HEROKU_API_EMAIL}}
           env_file: ".env"
         env:
-          HOST:     ${{ secrets.CLEARDB_HOST }}
-          USERNAME: ${{ secrets.CLEARDB_USERNAME }}
-          PASSWORD: ${{ secrets.CLEARDB_PASSWORD }}
-          DATABASE: ${{ secrets.CLEARDB_DATABASE }}
+          HOST: ${{secrets.HOST}}
+          USERNAME: ${{secrets.USERNAME}}
+          PASSWORD: ${{secrets.PASSWORD}}
+          DATABASE: ${{secrets.DATABASE}}
   health:
       needs: deploy
       runs-on: ubuntu-latest
