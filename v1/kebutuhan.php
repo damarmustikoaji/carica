@@ -1,44 +1,16 @@
 <?php
-// Connect to database
 require_once('../connection.php');
 
 $db = new DbConnection();
 $connection = $db->getdbconnect();
 $request_method=$_SERVER["REQUEST_METHOD"];
-// $a=array();
-// $b=array();
-// $header = apache_request_headers();
-// foreach ($header as $headers => $value) {
-//     array_push($a, $headers, $value);
-// }
-$hasil = keywordnya($_SERVER['HTTP_TOKEN']);
-
-// echo $hasil;
-
-// foreach($_SERVER as $key => $valuex) {
-//     if(strpos($key, 'HTTP_') === 0) {
-//         $headers = str_replace(' ', '-');
-//         echo $headers." : ". $i[$headers] = $valuex . "<br>";
-//         // array_push($b, $headers." : ". $i[$headers] = $valuex);
-//         // array_push($b, $headers, $valuex);
-//     }
-// }
-
-// foreach ($_SERVER as $headers => $value) {
-//     echo "$headers: $value <br>";
-// }
-
-// echo $_SERVER['HTTP_TOKEN'];
-
-// foreach($b as $bcek => $bvalue) {
-//     echo $bcek;
-// }
+$request_token = keywordnya($_SERVER['HTTP_TOKEN']);
 
 //=========================================
 
     switch($request_method) {
         case 'GET':
-            if ($hasil == 1) {
+            if ($request_token == 1) {
                 if(!empty($_GET["id"])) {
                     $id=$_GET["id"];
                     get_kebutuhan_detail($id);
@@ -53,7 +25,6 @@ $hasil = keywordnya($_SERVER['HTTP_TOKEN']);
             header('Content-Type: application/json');
             break;
         default:
-        // Invalid Request Method
             default_response();
             header('Content-Type: application/json');
             break;
