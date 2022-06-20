@@ -30,6 +30,6 @@ function default_response() {
     );
     echo json_encode($response);
     header('Content-Type: application/json');
-    header("HTTP/1.0 404 Not Found");
+    header("HTTP/1.0 200 OK");
 }
 ?>
