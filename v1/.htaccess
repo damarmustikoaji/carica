@@ -5,5 +5,7 @@ RewriteRule ^kebutuhan/list kebutuhan.php
 
 Options -Indexes
 <IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Origin "https://caricapps.herokuapp.com"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    Header set Content-Type "application/json"
 </IfModule>
