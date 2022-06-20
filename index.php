@@ -7,7 +7,9 @@ switch($request_method) {
     default:
     // Invalid Request Method
     defaultresponse();
-    header("HTTP/1.0 404 Not Found");
+    header("HTTP/1.0 200 OK");
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
     break;
 }
 
