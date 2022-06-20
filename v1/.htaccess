@@ -2,3 +2,8 @@ RewriteEngine On # Turn on the rewriting engine
 RewriteRule ^ping check.php [NC,L]
 RewriteRule ^kebutuhan/detail/([^/]+)/?$ kebutuhan.php?id=$1 [L]
 RewriteRule ^kebutuhan/list kebutuhan.php
+
+Options -Indexes
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>

@@ -23,12 +23,14 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 unauthorized_response();
             }
             header('Content-Type: application/json');
-            header('Access-Control-Allow-Origin: *');
+            header("Access-Control-Allow-Origin: *");
+            header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
             break;
         default:
             default_response();
             header('Content-Type: application/json');
-            header('Access-Control-Allow-Origin: *');
+            header("Access-Control-Allow-Origin: *");
+            header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
             break;
     }
 
@@ -96,7 +98,8 @@ function default_response() {
     );
     echo json_encode($response);
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     header("HTTP/1.0 404 Not Found");
 }
 
@@ -107,7 +110,8 @@ function unauthorized_response() {
     );
     echo json_encode($response);
     header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: *');
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     header("HTTP/1.0 401 Unauthorized");
 }
 
