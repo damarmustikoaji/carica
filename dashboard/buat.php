@@ -1,5 +1,7 @@
 <html>
 <head>
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
+<title>Caricapps - Buat</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
