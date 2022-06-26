@@ -2,11 +2,20 @@ RewriteEngine On # Turn on the rewriting engine
 RewriteRule ^ping check.php [NC,L]
 RewriteRule ^kebutuhan/detail/([^/]+)/?$ kebutuhan.php?id=$1 [L]
 RewriteRule ^kebutuhan/list kebutuhan.php
+RewriteRule ^kebutuhan/search/([^/]+)/?$ kebutuhan_search.php?search=$1 [L]
+RewriteRule ^kebutuhan/kategori kategori.php
+RewriteRule ^kebutuhan/buat kebutuhan_buat.php
+RewriteRule ^kebutuhan/edit/([^/]+)/?$ kebutuhan_edit.php?id=$1 [L]
+RewriteRule ^kebutuhan/stok/([^/]+)/?$ stok.php?id=$1 [L]
+RewriteRule ^kebutuhan/hapus/([^/]+)/?$ hapus.php?id=$1 [L]
+RewriteRule ^kebutuhan/halaman/([^/]+)/?$ kebutuhan_pagination.php?page=$1 [L]
+RewriteRule ^kebutuhan/riwayat/([^/]+)/?$ riwayat.php?page=$1 [L]
+RewriteRule ^kebutuhan/riwayat riwayat.php
 
 Options -Indexes
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "https://caricapps.herokuapp.com"
     Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-    Header set Access-Control-Allow-Methods "DELETE, POST, GET, OPTIONS"
+    Header set Access-Control-Allow-Methods "DELETE, POST, PUT, GET, OPTIONS"
     Header set Content-Type "application/json"
 </IfModule>

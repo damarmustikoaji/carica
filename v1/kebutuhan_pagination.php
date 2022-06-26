@@ -11,12 +11,12 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
     switch($request_method) {
         case 'GET':
             if ($request_token == 1) {
-                if(!empty($_GET["id"])) {
-                    $id=$_GET["id"];
-                    get_kebutuhan_detail($id);
+                if(!empty($_GET["page"])) {
+                    $page=$_GET["page"];
+                    get_kebutuhan_page($page);
                 }
                 else {
-                    get_kebutuhan_list();
+                    default_response();
                     } 
             }
             else {
@@ -28,37 +28,12 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
             break;
     }
 
-function get_kebutuhan_detail($id) {
+function get_kebutuhan_page($page) {
     global $connection;
     $data = [];
-    $query="SELECT * FROM kebutuhan WHERE id='".$id."' AND deleted_at IS NULL";
-    $result=mysqli_query($connection, $query);
-    while($row=mysqli_fetch_object($result))
-    {
-       $data[] =$row;
-    }
-    if($data){
-    $response=array(
-                   'status' => "00",
-                   'message' =>'Success',
-                   'data' => $data
-                );
-              }
-    else {
-      $response=array(
-          'status' => "99",
-          'message' =>'There is no data',
-          'data' => null
-       );  
-    }
-    header("HTTP/1.0 200 OK");
-    echo json_encode($response);
-}
-
-function get_kebutuhan_list() {
-    global $connection;
-    $data = [];
-    $query="SELECT * FROM kebutuhan WHERE deleted_at IS NULL";
+    $limit = 5;
+    $limitStart = ($page - 1) * $limit;
+    $query="SELECT * FROM kebutuhan WHERE deleted_at IS NULL LIMIT ".$limitStart.",".$limit;
     $result=mysqli_query($connection, $query);
     while($row=mysqli_fetch_object($result))
     {
