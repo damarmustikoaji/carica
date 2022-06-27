@@ -47,7 +47,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 $fileExt = strtolower(pathinfo($fileName,PATHINFO_EXTENSION)); // get image extension
                     
                 // valid image extensions
-                $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); 
+                $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'heic'); 
                                 
                 // allow valid image file formats
                 if(in_array($fileExt, $valid_extensions))
@@ -56,7 +56,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                     if(!file_exists($upload_path . $fileName))
                     {
                         // check file size '5MB' 10mb
-                        if($fileSize < 10000000){
+                        if($fileSize < 50000000){
                             move_uploaded_file($tempPath, $upload_path . $fileName); // move file from system temporary path to our upload folder path 
                         }
                         else{		
@@ -70,7 +70,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 }
                 else
                 {		
-                    $response = array("message" => "Sorry, only JPG, JPEG, PNG & GIF files are allowed", "status" => false);	
+                    $response = array("message" => "Sorry, only JPG, JPEG, PNG & GIF & HEIC files are allowed", "status" => false);	
                 }
             }
                     
