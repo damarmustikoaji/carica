@@ -11,7 +11,8 @@ RewriteRule ^kebutuhan/hapus/([^/]+)/?$ hapus.php?id=$1 [L]
 RewriteRule ^kebutuhan/halaman/([^/]+)/?$ kebutuhan_pagination.php?page=$1 [L]
 RewriteRule ^kebutuhan/riwayat/([^/]+)/?$ riwayat.php?page=$1 [L]
 RewriteRule ^kebutuhan/riwayat riwayat.php
-RewriteRule ^upload upload.php
+RewriteRule ^upload/file upload.php
+RewriteRule ^upload/list upload_list.php [NC,L]
 
 Options -Indexes
 <IfModule mod_headers.c>
