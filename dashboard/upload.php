@@ -46,7 +46,7 @@ const button = document.querySelector('#submit');
 
 button.addEventListener('click', () => {
   const form = new FormData(document.querySelector('#profileData'));
-  const url = host+'/v1/upload'
+  const url = host+'/v1/upload/file'
   const request = new Request(url, {
     method: 'POST',
     headers: { 'token': 'cocobain123' },
