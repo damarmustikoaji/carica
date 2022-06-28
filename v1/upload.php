@@ -28,6 +28,8 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
         $fileName  =  $_FILES['sendimage']['name'];
         $tempPath  =  $_FILES['sendimage']['tmp_name'];
         $fileSize  =  $_FILES['sendimage']['size'];
+        $catatan  =  $_POST['catatan'];
+        $nominal  =  $_POST['nominal'];
         if ($fileName == "" || $tempPath == "" || $fileSize == "") {
             $response=array(
                 'status' => "99",
@@ -77,7 +79,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
             // if no error caused, continue ....
             if(!isset($response))
             {
-                $query = mysqli_query($connection,'INSERT into tbl_image (name) VALUES("'.$fileName.'")');
+                $query = mysqli_query($connection,'INSERT into tbl_image (name, catatan, nominal) VALUES("'.$fileName.'", "'.$catatan.'", "'.$nominal.'")');
                         
                 $response = array("message" => "Image Uploaded Successfully", "status" => true);	
             }

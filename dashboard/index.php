@@ -45,6 +45,12 @@
          window.location.href="./riwayat.php";  
        }
      </script>
+    <input type="button" value="Upload" onClick="myUpload()"/> 
+     <script>
+       function myUpload() {
+         window.location.href="./upload.php";  
+       }
+     </script>
 </form>
  <table class="table table-bordered">
     <tr>
@@ -52,7 +58,7 @@
     <td>Stok</td>
     <td>Expired</td>
 </tr>
-  <img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" /> 
+  <img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
    <tbody id="data">
    </tbody>
 </table>   
@@ -89,7 +95,7 @@ let host = "http://caricapps.herokuapp.com";
 const thisForm = document.getElementById('myForm');
 thisForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var loadnya = '<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" />'
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
     document.getElementById("data").innerHTML=loadnya;
     const formData = new FormData(thisForm).entries()
     const coba = Object.fromEntries(formData)

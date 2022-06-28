@@ -1,4 +1,4 @@
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.ico" type="image/x-icon">
 <title>Caricapps - Upload</title>
 
@@ -20,13 +20,13 @@
   <div class="form-row">
     <div class="col">
       <div class="form-group">
-        <label for="catatan">Catatan</label>
         <input name="catatan" type="text" id="catatan" class="form-control" placeholder="Catatan">
+        <input name="nominal" type="text" id="nominal" class="form-control" placeholder="Nominal">
       </div>
     </div>
   </div>
   <div class="form-group">
-    <label for="sendimage">Upload</label>
+    <!-- <label for="sendimage">Upload</label> -->
     <input name="sendimage" type="file" class="form-control" id="sendimage" accept="image/*" (change)="getFile($event)">
   </div>
   <div class="form-group">
@@ -34,6 +34,12 @@
   </div>
 </form>
 <div id="data"></div>
+<input type="button" value="Kembali" onClick="myKembali()"/> 
+     <script>
+       function myKembali() {
+         window.location.href="./";  
+       }
+     </script>
 <input type="button" value="List" onClick="myFunction()"/> 
      <script>
        function myFunction() {

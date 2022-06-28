@@ -1,5 +1,6 @@
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.ico" type="image/x-icon">
 <title>Caricapps - Upload List</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -35,10 +36,11 @@
     <tr>
     <td>ID</td>
     <td>Nama</td>
+    <td>Catatan</td>
     <td>Created</td>
     <td>Preview</td>
 </tr>
-<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" /> 
+<img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
    <tbody id="data">
    </tbody>
 </table>   
@@ -66,8 +68,9 @@ let host = "http://caricapps.herokuapp.com";
          temp+="<tr>";
          temp+="<td>"+data[i].id+"</td>";
          temp+="<td>"+data[i].name+"</td>";
+         temp+="<td>"+data[i].catatan+"</td>";
          temp+="<td>"+data[i].created_at+"</td>";
-         temp+="<td><a href='../upload/"+data[i].name+"' new='blank'><img src='../upload/"+data[i].name+"' width='50' height='60'/></a></td>";
+         temp+="<td><a href='../upload/"+data[i].name+"' target='_blank'><img src='../upload/"+data[i].name+"' width='50' height='60'/></a></td>";
        }
 
     document.getElementById("data").innerHTML=temp;

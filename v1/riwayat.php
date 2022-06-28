@@ -62,7 +62,7 @@ function get_kebutuhan_riwayat_page($page) {
 function get_kebutuhan_riwayat() {
     global $connection;
     $data = [];
-    $query="SELECT riwayat.id, kebutuhan.nama, riwayat.tipe, riwayat.jumlah, riwayat.balance_akhir, riwayat.created_at FROM riwayat INNER JOIN kebutuhan ON riwayat.id_kebutuhan=kebutuhan.id";
+    $query="SELECT riwayat.id, kebutuhan.nama, riwayat.tipe, riwayat.jumlah, riwayat.balance_akhir, riwayat.created_at FROM riwayat INNER JOIN kebutuhan ON riwayat.id_kebutuhan=kebutuhan.id ORDER BY riwayat.created_at DESC";
     $result=mysqli_query($connection, $query);
     while($row=mysqli_fetch_object($result))
     {
