@@ -16,7 +16,7 @@
             document.getElementById('loader1').style.display = "none"; 
         }
     </script>
-<form method="POST" action="upload.php" id="profileData" enctype="multipart/form-data">
+<form method="POST" action="upload.php" id="profileData" enctype="multipart/form-data" accept="image/*">
   <div class="form-row">
     <div class="col">
       <div class="form-group">
