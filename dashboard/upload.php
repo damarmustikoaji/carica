@@ -15,22 +15,19 @@
             document.getElementById('loader1').style.display = "none"; 
         }
     </script>
-<form method="POST" action="upload.php" id="profileData" enctype="multipart/form-data">
+<form method="POST" action="upload.php" id="profileData" enctype="multipart/form-data" accept="image/*">
   <div class="form-row">
     <div class="col">
       <div class="form-group">
         <label for="catatan">Catatan</label>
         <input name="catatan" type="text" id="catatan" class="form-control" placeholder="Catatan">
-        <label for="nominal">Nominal</label>
-        <input name="nominal" type="text" id="nominal" class="form-control" placeholder="Nominal">
       </div>
     </div>
   </div>
   <div class="form-group">
     <label for="sendimage">Upload</label>
-    <input name="sendimage" type="file" class="form-control" id="sendimage" accept="image/*" (change)="getFile($event)">
+    <input name="sendimage" type="file" class="form-control" id="sendimage">
   </div>
-  <br/>
   <div class="form-group">
     <button type="button" id="submit" class="btn btn-outline-primary">Submit</button>
   </div>
