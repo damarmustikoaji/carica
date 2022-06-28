@@ -1,4 +1,3 @@
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="./favicon.ico" type="image/x-icon">
 <title>Caricapps - Upload</title>
 
@@ -20,30 +19,23 @@
   <div class="form-row">
     <div class="col">
       <div class="form-group">
+        <label for="catatan">Catatan</label>
         <input name="catatan" type="text" id="catatan" class="form-control" placeholder="Catatan">
-        <br/>
-        <br/>
+        <label for="nominal">Nominal</label>
         <input name="nominal" type="text" id="nominal" class="form-control" placeholder="Nominal">
       </div>
     </div>
   </div>
   <div class="form-group">
-    <!-- <label for="sendimage">Upload</label> -->
-    <br/>
+    <label for="sendimage">Upload</label>
     <input name="sendimage" type="file" class="form-control" id="sendimage" accept="image/*" (change)="getFile($event)">
   </div>
+  <br/>
   <div class="form-group">
-    <br/>
     <button type="button" id="submit" class="btn btn-outline-primary">Submit</button>
   </div>
 </form>
 <div id="data"></div>
-<input type="button" value="Kembali" onClick="myKembali()"/> 
-     <script>
-       function myKembali() {
-         window.location.href="./";  
-       }
-     </script>
 <input type="button" value="List" onClick="myFunction()"/> 
      <script>
        function myFunction() {
@@ -52,9 +44,7 @@
      </script>
 <script>
 let host = "http://caricapps.herokuapp.com";
-
 const button = document.querySelector('#submit');
-
 button.addEventListener('click', async function (e) {
 //   const form = new FormData(document.querySelector('#profileData'));
 //   const url = host+'/v1/upload/file'
@@ -69,16 +59,12 @@ button.addEventListener('click', async function (e) {
         headers: { 'token': 'cocobain123' },
         body: form
     });
-
 //   fetch(request)
     // .then(response => response.json())
     // .then(data => { console.log(data); })
-
     const results = await response.json();
-
     var loadnya = '<b>'+results.message+'</b>'
     document.getElementById("data").innerHTML=loadnya;
-
 document.getElementById("profileData").reset();
 });
 </script>
