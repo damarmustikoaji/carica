@@ -40,7 +40,7 @@
     <td>Balance Akhir</td>
     <td>Created</td>
 </tr>
-<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" /> 
+<img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
    <tbody id="data">
    </tbody>
 </table>   

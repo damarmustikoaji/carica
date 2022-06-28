@@ -42,7 +42,7 @@
 <form id="myRestok">
     <input id="restok" type="submit" value="Restok">
 </form>
-<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" />
+<img id="loader1" src="../assets/loading.gif" alt="loading gif" />
 <form id="myEdit">
   <tbody id="data"></tbody>
   <input id="edit" type="submit" value="Edit">
@@ -90,7 +90,7 @@
 const thisFormGunakan = document.getElementById('myGunakan');
 thisFormGunakan.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var loadnya = '<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" />'
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
     document.getElementById("data").innerHTML=loadnya;
     const response = await fetch(host+'/v1/kebutuhan/stok/<?php echo $_GET['id'];?>', {
         method: 'POST',
@@ -115,7 +115,7 @@ thisFormGunakan.addEventListener('submit', async function (e) {
 const thisFormRestok = document.getElementById('myRestok');
 thisFormRestok.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var loadnya = '<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" />'
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
     document.getElementById("data").innerHTML=loadnya;
     const response = await fetch(host+'/v1/kebutuhan/stok/'+idDetail, {
         method: 'POST',
@@ -136,7 +136,7 @@ thisFormEdit.addEventListener('submit', async function (e) {
     e.preventDefault();
     const namaValue = document.getElementById("nama").value; 
     const kategoriValue = document.getElementById("kategori").value; 
-    var loadnya = '<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" />'
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
     document.getElementById("data").innerHTML=loadnya;
     const response = await fetch(host+'/v1/kebutuhan/edit/'+idDetail, {
         method: 'PUT',
@@ -154,7 +154,7 @@ thisFormEdit.addEventListener('submit', async function (e) {
 const thisFormHapus = document.getElementById('myHapus');
 thisFormHapus.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var loadnya = '<img id="loader1" src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" alt="loading gif" />'
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
     document.getElementById("data").innerHTML=loadnya;
     const response = await fetch(host+'/v1/kebutuhan/hapus/'+idDetail, {
         method: 'DELETE',

@@ -27,7 +27,7 @@
 
 <script>
 
-    let host = "http://caricapps.herokuapp.com";
+let host = "http://caricapps.herokuapp.com";
 
 getData();
 

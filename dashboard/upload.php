@@ -21,15 +21,19 @@
     <div class="col">
       <div class="form-group">
         <input name="catatan" type="text" id="catatan" class="form-control" placeholder="Catatan">
+        <br/>
+        <br/>
         <input name="nominal" type="text" id="nominal" class="form-control" placeholder="Nominal">
       </div>
     </div>
   </div>
   <div class="form-group">
     <!-- <label for="sendimage">Upload</label> -->
+    <br/>
     <input name="sendimage" type="file" class="form-control" id="sendimage" accept="image/*" (change)="getFile($event)">
   </div>
   <div class="form-group">
+    <br/>
     <button type="button" id="submit" class="btn btn-outline-primary">Submit</button>
   </div>
 </form>
