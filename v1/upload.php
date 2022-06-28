@@ -57,9 +57,6 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                     {
                         // check file size '5MB' 10mb
                         if($fileSize < 50000000){
-                            if (str_contains($fileName, 'heic')) {
-                                $fileName = $fileName+'.jpg';
-                            }
                             move_uploaded_file($tempPath, $upload_path . $fileName); // move file from system temporary path to our upload folder path 
                         }
                         else{		
