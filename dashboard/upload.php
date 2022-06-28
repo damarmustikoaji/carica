@@ -16,7 +16,7 @@
             document.getElementById('loader1').style.display = "none"; 
         }
     </script>
-<form method="POST" action="upload.php" id="profileData" enctype="multipart/form-data" accept="image/*">
+<form method="POST" action="upload.php" id="profileData" enctype="multipart/form-data">
   <div class="form-row">
     <div class="col">
       <div class="form-group">
@@ -27,7 +27,7 @@
   </div>
   <div class="form-group">
     <label for="sendimage">Upload</label>
-    <input name="sendimage" type="file" class="form-control" id="sendimage">
+    <input name="sendimage" type="file" class="form-control" id="sendimage" accept="image/*" (change)="getFile($event)">
   </div>
   <div class="form-group">
     <button type="button" id="submit" class="btn btn-outline-primary">Submit</button>
