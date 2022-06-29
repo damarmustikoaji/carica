@@ -1,23 +1,14 @@
-<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-  border: 1px solid #ddd;
-}
-
-th, td {
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-</style>
-<style>
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
+<title>Caricapps - Upload List</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
         #loader1 {
             position:absolute;
             left:40%;
@@ -33,31 +24,27 @@ tr:nth-child(even){background-color: #f2f2f2}
     </script>
 </head>
 <body>
-
-<h2>Responsive Table</h2>
-<input type="button" value="Kembali" onClick="kembali()"/> 
-        <script>
-        function kembali() {
-            window.location.href="./upload.php";  
-        }
-    </script>
-
-<div style="overflow-x:auto;">
-  <table>
+<form id="myForm">
+    <input type="button" value="Kembali" onClick="myFunction()"/> 
+     <script>
+       function myFunction() {
+         window.location.href="./upload.php";  
+       }
+     </script>
+</form>
+ <table class="table table-bordered">
     <tr>
-      <th>Created</th>
-      <th>Nominal</th>
-      <th>Catatan</th>
-      <th>Lampiran</th>
-    </tr>
-    <tr>
-        <tbody id="data">
-        <img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
-    </tr>
-  </table>
-</div>
+    <td>ID</td>
+    <td>Nama</td>
+    <td>Catatan</td>
+    <td>Created</td>
+    <td>Preview</td>
+</tr>
+<img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
+   <tbody id="data">
+   </tbody>
+</table>   
 
-</body>
 <script>
 
 let host = "http://caricapps.herokuapp.com";
@@ -79,9 +66,10 @@ let host = "http://caricapps.herokuapp.com";
        for(i=0;i<length;i++)
        {
          temp+="<tr>";
-         temp+="<td>"+data[i].created_at+"</td>";
-         temp+="<td>"+data[i].nominal+"</td>";
+         temp+="<td>"+data[i].id+"</td>";
+         temp+="<td>"+data[i].name+"</td>";
          temp+="<td>"+data[i].catatan+"</td>";
+         temp+="<td>"+data[i].created_at+"</td>";
          temp+="<td><a href='../upload/"+data[i].name+"' target='_blank'><img src='../upload/"+data[i].name+"' width='50' height='60'/></a></td>";
        }
 
@@ -89,4 +77,6 @@ let host = "http://caricapps.herokuapp.com";
      }
 
 </script>
+</body>
+
 </html>

@@ -30,7 +30,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
         $fileSize  =  $_FILES['sendimage']['size'];
         $catatan  =  $_POST['catatan'];
         $nominal  =  $_POST['nominal'];
-        if ($fileName == "" || $tempPath == "" || $fileSize == "") {
+        if ($fileName == "" || $tempPath == "" || $fileSize == "" || $catatan == "" || $nominal == "") {
             $response=array(
                 'status' => "99",
                 'message' =>'Required Field.'
@@ -62,17 +62,17 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                             move_uploaded_file($tempPath, $upload_path . $fileName); // move file from system temporary path to our upload folder path 
                         }
                         else{		
-                            $response = array("message" => "Sorry, your file is too large, please upload 5 MB size", "status" => false);
+                            $response = array("message" => "Sorry, your file is too large, please upload 5 MB size", "status" => "99");
                         }
                     }
                     else
                     {		
-                        $response = array("message" => "Sorry, file already exists check upload folder", "status" => false);
+                        $response = array("message" => "Sorry, file already exists check upload folder", "status" => "99");
                     }
                 }
                 else
                 {		
-                    $response = array("message" => "Sorry, only JPG, JPEG, PNG & GIF & HEIC files are allowed", "status" => false);	
+                    $response = array("message" => "Sorry, only JPG, JPEG, PNG & GIF & HEIC files are allowed", "status" => "99");	
                 }
             }
                     
@@ -81,7 +81,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
             {
                 $query = mysqli_query($connection,'INSERT into tbl_image (name, catatan, nominal) VALUES("'.$fileName.'", "'.$catatan.'", "'.$nominal.'")');
                         
-                $response = array("message" => "Image Uploaded Successfully", "status" => true);	
+                $response = array("message" => "Image Uploaded Successfully", "status" => "00");	
             }
                 $statusCode="HTTP/1.0 200 OK";
         header($statusCode);
