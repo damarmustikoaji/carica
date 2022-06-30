@@ -2,8 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="./favicon.ico" type="image/x-icon">
+<link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
 <title>Caricapps - Upload</title>
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -52,6 +51,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 </head>
 <body>
+<input type="button" value="Kembali" onClick="myKembali()"/> 
+        <script>
+        function myKembali() {
+            window.location.href="./";  
+        }
+    </script>
     <input type="button" value="List" onClick="myFunction()"/> 
         <script>
         function myFunction() {
@@ -70,7 +75,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <script>
 
-let host = "http://caricapps.herokuapp.com";
+let host = "https://caricapps.herokuapp.com";
      
 const thisForm = document.getElementById('form_upload');
 thisForm.addEventListener('submit', async function (e) {

@@ -33,6 +33,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
         $data = json_decode(file_get_contents('php://input'), true);
         $kebutuhan_nama=$data["nama"];
         $kebutuhan_kategori=$data["kategori"];
+        $kebutuhan_expired=$data["expired"];
         $kategori = [];
         $query="SELECT * FROM kategori WHERE nama='".$kebutuhan_kategori."' LIMIT 1";
         $result=mysqli_query($connection, $query);
@@ -61,7 +62,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 );
                 $statusCode="HTTP/1.0 400 Bad Request";
         } else {
-            $query="UPDATE kebutuhan SET nama='".$kebutuhan_nama."', kategori='".$kebutuhan_kategori."' WHERE id='".$id."'";
+            $query="UPDATE kebutuhan SET nama='".$kebutuhan_nama."', kategori='".$kebutuhan_kategori."', expired_at='".$kebutuhan_expired."' WHERE id='".$id."'";
             if(mysqli_query($connection, $query)) {
                 $response=array(
                 'status' => "00",

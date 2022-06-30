@@ -1,13 +1,24 @@
 <html>
 <head>
-<link rel="icon" href="./favicon.ico" type="image/x-icon">
-<title>Caricapps - Detail</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+<title>Caricapps - Upload</title>
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+<style>
         #loader1 {
             position:absolute;
             left:40%;
@@ -23,13 +34,14 @@
     </script>
 </head>
 <body>
- <table class="table table-bordered">
+<div style="overflow-x:auto;">
+  <table>
     <tr>
-    <td>Nama</td>
-    <td>Stok</td>
-    <td>Kategori</td>
-    <td>Expired</td>
-</tr>
+    <th>Nama</th>
+    <th>Stok</th>
+    <th>Kategori</th>
+    <th>Expired</th>
+    </tr>
 <input type="button" value="Kembali" onClick="myFunction()"/> 
      <script>
        function myFunction() {
@@ -54,7 +66,7 @@
 <div id="notavailable"></div>
 <script>
 
-    let host = "http://caricapps.herokuapp.com";
+let host = "https://caricapps.herokuapp.com";
 
     let idDetail = "<?php echo $_GET['id'];?>";
     let balance_akhir;
@@ -90,7 +102,7 @@
 const thisFormGunakan = document.getElementById('myGunakan');
 thisFormGunakan.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />';
     document.getElementById("data").innerHTML=loadnya;
     const response = await fetch(host+'/v1/kebutuhan/stok/<?php echo $_GET['id'];?>', {
         method: 'POST',
@@ -136,6 +148,7 @@ thisFormEdit.addEventListener('submit', async function (e) {
     e.preventDefault();
     const namaValue = document.getElementById("nama").value; 
     const kategoriValue = document.getElementById("kategori").value; 
+    const expiredValue = document.getElementById("expired").value; 
     var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />'
     document.getElementById("data").innerHTML=loadnya;
     const response = await fetch(host+'/v1/kebutuhan/edit/'+idDetail, {
@@ -143,7 +156,8 @@ thisFormEdit.addEventListener('submit', async function (e) {
         headers: { 'Content-Type': 'application/json', 'token': 'cocobain123' },
         body: JSON.stringify({
             'nama': namaValue,
-            'kategori': kategoriValue
+            'kategori': kategoriValue,
+            'expired': expiredValue
         })
     });
 

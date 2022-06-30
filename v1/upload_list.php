@@ -25,7 +25,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
 function get_upload_list() {
     global $connection;
     $data = [];
-    $query="SELECT * from tbl_image ORDER BY created_at DESC";
+    $query="SELECT * from pengeluaran ORDER BY created_at DESC";
     $result=mysqli_query($connection, $query);
     while($row=mysqli_fetch_object($result))
     {

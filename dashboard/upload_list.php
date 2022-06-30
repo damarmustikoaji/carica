@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+<title>Caricapps - Upload</title>
 <style>
 table {
   border-collapse: collapse;
@@ -34,11 +36,11 @@ tr:nth-child(even){background-color: #f2f2f2}
 </head>
 <body>
 
-<h2>Responsive Table</h2>
+<h2>Daftar Upload</h2>
 <input type="button" value="Kembali" onClick="kembali()"/> 
         <script>
         function kembali() {
-            window.location.href="./upload.php";  
+            window.location.href="./";  
         }
     </script>
 
@@ -60,7 +62,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 </body>
 <script>
 
-let host = "http://caricapps.herokuapp.com";
+let host = "https://caricapps.herokuapp.com";
 
   getData();
 
@@ -74,16 +76,23 @@ let host = "http://caricapps.herokuapp.com";
        const results = await response.json();
        hideLoader();
        const data = results.data;
-       length=data.length;
        var temp="";
-       for(i=0;i<length;i++)
-       {
-         temp+="<tr>";
-         temp+="<td>"+data[i].created_at+"</td>";
-         temp+="<td>"+data[i].nominal+"</td>";
-         temp+="<td>"+data[i].catatan+"</td>";
-         temp+="<td><a href='../upload/"+data[i].name+"' target='_blank'><img src='../upload/"+data[i].name+"' width='50' height='60'/></a></td>";
-       }
+       try {
+            length=data.length;
+            for(i=0;i<length;i++)
+            {
+                temp+="<tr>";
+                temp+="<td>"+data[i].created_at+"</td>";
+                temp+="<td>"+data[i].nominal+"</td>";
+                temp+="<td>"+data[i].catatan+"</td>";
+                temp+="<td><a href='../bukti/"+data[i].name+"' target='_blank'><img src='../bukti/"+data[i].name+"' width='50' height='60'/></a></td>";
+            }
+        }
+        catch(err) {
+          temp+="<tr><td colspan='4'><p style='text-align:center'>"+results.pesan+"</b></td></tr>";
+
+        }
+
 
     document.getElementById("data").innerHTML=temp;
      }

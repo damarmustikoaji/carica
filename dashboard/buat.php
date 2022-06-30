@@ -1,33 +1,85 @@
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="./favicon.ico" type="image/x-icon">
-<title>Caricapps - Buat</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.form-inline {  
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+  
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+</style>
 </head>
 <body>
-<form id="myForm">
-    <input id="nama" name="nama" value="" placeholder="nama" required>
+
+<h2>Buat Stok</h2>
+
+<form class="form-inline" id="myForm">
+    <input type="text" id="nama" placeholder="Nama" name="nama">
+    <input id="jumlah" name="jumlah" value="" placeholder="Stok" required>
+    <input type="date" id="expired" placeholder="Expired (22/05/31)" name="expired">
     <select name="kategori" id="kategori" required>
         <option value="">kategori</option>
     </select>
-    <input id="jumlah" name="jumlah" value="" placeholder="jumlah" required>
-    <input id="expired" name="expired" value="" placeholder="expired (22/05/31)" required>
+    <button type="submit" id="postSubmit">Submit</button>
     <input type="button" value="Batal" onClick="myFunction()"/> 
      <script>
        function myFunction() {
          window.location.href="./";  
        }
      </script>
-    <input id="postSubmit" type="submit" value="Buat">
-</form> 
+</form>
 
+</body>
 <script>
 
-let host = "http://caricapps.herokuapp.com";
+let host = "https://caricapps.herokuapp.com";
 
 getData();
 
@@ -72,6 +124,4 @@ thisForm.addEventListener('submit', async function (e) {
 
 
 </script>
-</body>
-
 </html>

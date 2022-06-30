@@ -1,13 +1,24 @@
 <html>
 <head>
-<link rel="icon" href="./favicon.ico" type="image/x-icon">
-<title>Caricapps</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+<title>Caricapps - Upload</title>
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+<style>
         #loader1 {
             position:absolute;
             left:40%;
@@ -23,6 +34,8 @@
     </script>
 </head>
 <body>
+
+<h2>Stok</h2>
 
 <form id="myForm">
     <input id="myName" name="name" value="" placeholder="Kata Kunci" required>
@@ -45,27 +58,28 @@
          window.location.href="./riwayat.php";  
        }
      </script>
-    <input type="button" value="Upload" onClick="myUpload()"/> 
+    <input type="button" value="Pengeluaran" onClick="myUpload()"/> 
      <script>
        function myUpload() {
          window.location.href="./upload.php";  
        }
      </script>
 </form>
- <table class="table table-bordered">
+<div style="overflow-x:auto;">
+  <table>
     <tr>
-    <td>Nama</td>
-    <td>Stok</td>
-    <td>Expired</td>
-</tr>
-  <img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
-   <tbody id="data">
-   </tbody>
-</table>   
+      <th>Nama</th>
+      <th>Stok</th>
+      <th>Expired</th>
+    </tr>
+        <tbody id="data">
+        <img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
+  </table>
+      </div>
 
 <script>
 
-let host = "http://caricapps.herokuapp.com";
+let host = "https://caricapps.herokuapp.com";
 
   getData();
 
@@ -79,15 +93,21 @@ let host = "http://caricapps.herokuapp.com";
        const results = await response.json();
        hideLoader();
        const data = results.data;
-       length=data.length;
        var temp="";
-       for(i=0;i<length;i++)
-       {
-         temp+="<tr>";
-         temp+="<td><a href='./detail.php?id="+data[i].id+"'>"+data[i].nama+"</a></td>";
-         temp+="<td>"+data[i].jumlah+"</td>";
-         temp+="<td>"+data[i].expired_at+"</td>";
-       }
+       try {
+          length=data.length;
+          for(i=0;i<length;i++)
+          {
+            temp+="<tr>";
+            temp+="<td><a href='./detail.php?id="+data[i].id+"'>"+data[i].nama+"</a></td>";
+            temp+="<td>"+data[i].jumlah+"</td>";
+            temp+="<td>"+data[i].expired_at+"</td>";
+            temp+="</tr>";
+          }
+        }
+        catch(err) {
+          temp+="<tr><td colspan='3'><p style='text-align:center'>"+results.pesan+"</b></td></tr>";
+        }
 
     document.getElementById("data").innerHTML=temp;
      }
@@ -115,11 +135,13 @@ thisForm.addEventListener('submit', async function (e) {
               temp+="<td><a href='./detail.php?id="+data[i].id+"'>"+data[i].nama+"</a></td>";
               temp+="<td>"+data[i].jumlah+"</td>";
               temp+="<td>"+data[i].expired_at+"</td>";
+              temp+="</tr>";
           }
         }
         catch(err) {
           temp+="<tr>";
           temp+="<td><b>'"+coba.name+"' Tidak Ditemukan</b></td>";
+          temp+="</tr>";
         }
 
     document.getElementById("data").innerHTML=temp;

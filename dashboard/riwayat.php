@@ -1,13 +1,24 @@
 <html>
 <head>
-<link rel="icon" href="./favicon.ico" type="image/x-icon">
-<title>Caricapps - Riwayat</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+<title>Caricapps - Upload</title>
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+<style>
         #loader1 {
             position:absolute;
             left:40%;
@@ -30,24 +41,26 @@
          window.location.href="./";  
        }
      </script>
-</form>
- <table class="table table-bordered">
+</form> 
+
+<div style="overflow-x:auto;">
+  <table>
     <tr>
-    <td>ID</td>
-    <td>Kebutuhan</td>
-    <td>Tipe</td>
-    <td>Pembaharuan</td>
-    <td>Balance Akhir</td>
-    <td>Created</td>
-</tr>
-<img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
-   <tbody id="data">
-   </tbody>
-</table>   
+      <th>ID</th>
+      <th>Kebutuhan</th>
+      <th>Tipe</th>
+      <th>Pembaharuan</th>
+      <th>Balance Akhir</th>
+      <th>Created</th>
+    </tr>
+        <tbody id="data">
+        <img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
+  </table>
+      </div>
 
 <script>
 
-let host = "http://caricapps.herokuapp.com";
+let host = "https://caricapps.herokuapp.com";
 
   getData();
 
@@ -61,8 +74,9 @@ let host = "http://caricapps.herokuapp.com";
        const results = await response.json();
        hideLoader();
        const data = results.data;
-       length=data.length;
        var temp="";
+       try {
+       length=data.length;
        for(i=0;i<length;i++)
        {
          temp+="<tr>";
@@ -72,7 +86,13 @@ let host = "http://caricapps.herokuapp.com";
          temp+="<td>"+data[i].jumlah+"</td>";
          temp+="<td>"+data[i].balance_akhir+"</td>";
          temp+="<td>"+data[i].created_at+"</td>";
+         temp+="</tr>";
        }
+      }
+        catch(err) {
+          temp+="<tr><td colspan='6'><p style='text-align:center'>"+results.pesan+"</b></td></tr>";
+        }
+
 
     document.getElementById("data").innerHTML=temp;
      }

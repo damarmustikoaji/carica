@@ -44,7 +44,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 // 'path' => $tempPath,
                 // 'size' => $fileSize
                 // );
-                $upload_path = '../upload/'; // set upload folder path 
+                $upload_path = '../bukti/'; // set upload folder path 
 	
                 $fileExt = strtolower(pathinfo($fileName,PATHINFO_EXTENSION)); // get image extension
                     
@@ -79,11 +79,11 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
             // if no error caused, continue ....
             if(!isset($response))
             {
-                $query = mysqli_query($connection,'INSERT into tbl_image (name, catatan, nominal) VALUES("'.$fileName.'", "'.$catatan.'", "'.$nominal.'")');
+                $query = mysqli_query($connection,'INSERT into pengeluaran (name, catatan, nominal) VALUES("'.$fileName.'", "'.$catatan.'", "'.$nominal.'")');
                         
                 $response = array("message" => "Image Uploaded Successfully", "status" => "00");	
             }
-                $statusCode="HTTP/1.0 200 OK";
+                $statusCode="HTTP/1.0 201 Created";
         header($statusCode);
         echo json_encode($response);
     }
