@@ -66,7 +66,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 <div id="notavailable"></div>
 <script>
 
-let host = "https://caricapps.herokuapp.com";
+let host = "http://caricapps.herokuapp.com";
 
     let idDetail = "<?php echo $_GET['id'];?>";
     let balance_akhir;

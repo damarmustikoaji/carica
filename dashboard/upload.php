@@ -75,7 +75,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 <script>
 
-let host = "https://caricapps.herokuapp.com";
+let host = "http://caricapps.herokuapp.com";
      
 const thisForm = document.getElementById('form_upload');
 thisForm.addEventListener('submit', async function (e) {
