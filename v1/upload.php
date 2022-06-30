@@ -44,7 +44,7 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 // 'path' => $tempPath,
                 // 'size' => $fileSize
                 // );
-                $upload_path = '../bukti/'; // set upload folder path 
+                $upload_path = '../upload/'; // set upload folder path 
 	
                 $fileExt = strtolower(pathinfo($fileName,PATHINFO_EXTENSION)); // get image extension
                     
