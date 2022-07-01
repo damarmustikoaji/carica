@@ -19,7 +19,6 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APPS_NAME}}
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           env_file: ".env"
-      - run: mkdir bukti
       - run: chmod -R 777 bukti
  
   health:
