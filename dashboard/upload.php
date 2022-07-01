@@ -117,6 +117,8 @@ async function getData(){
 const thisForm = document.getElementById('form_upload');
 thisForm.addEventListener('submit', async function (e) {
     e.preventDefault();
+    var loadnya = '<img id="loader1" src="../assets/loading.gif" alt="loading gif" />';
+    document.getElementById("notif").innerHTML=loadnya;
     const form = new FormData(document.querySelector('#form_upload'));
     const response = await fetch(host+'/v1/upload/file', {
         method: 'POST',
@@ -130,7 +132,7 @@ thisForm.addEventListener('submit', async function (e) {
     } else {
         var notif = '<p style="color:red"><b>'+results.pesan+'</b></p>'
     }
-    
+    hideLoader();
     document.getElementById("notif").innerHTML=notif;
     getData();
 });
