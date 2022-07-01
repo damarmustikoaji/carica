@@ -49,6 +49,20 @@ body {font-family: Arial, Helvetica, sans-serif;}
   }
 }
 </style>
+<style>
+        #loader1 {
+            position:absolute;
+            left:40%;
+            top:35%;
+            border-radius:20px;
+            padding:25px;
+        }
+    </style>
+        <script>
+        function hideLoader() { 
+            document.getElementById('loader1').style.display = "none"; 
+        }
+    </script>
 </head>
 <body>
 <input type="button" value="Kembali" onClick="myKembali()"/> 
@@ -64,7 +78,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
         }
     </script>
     <h2>Upload Form</h2>
-    <div id="data"></div>
+    <img id="loader1" src="../assets/loading.gif" alt="loading gif" /> 
+    <div id="pengeluaran"></div>
+    <div id="notif"></div>
     <form class="form-inline" method="POST" id="form_upload" enctype="multipart/form-data">
         <input type="file" id="sendimage" name="sendimage">
         <input type="text" id="nominal" placeholder="Nominal" name="nominal">
@@ -76,6 +92,27 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 
 let host = "http://caricapps.herokuapp.com";
+
+getData();
+
+async function getData(){
+     const response = await fetch(host+'/v1/pengeluaran/total', {
+                                  method: 'GET',
+                                  headers: {
+                                      'token': 'cocobain123'
+                                  }
+                                  })
+     const results = await response.json();
+      hideLoader();
+     const data = results.data.pengeluaran;
+     const format = data.toString().split('').reverse().join('');
+      const convert = format.match(/\d{1,3}/g);
+      const rupiah = 'Rp ' + convert.join('.').split('').reverse().join('')
+     var temp="";
+     temp+="Pengeluaran "+rupiah;
+
+  document.getElementById("pengeluaran").innerHTML=temp;
+   }
      
 const thisForm = document.getElementById('form_upload');
 thisForm.addEventListener('submit', async function (e) {
@@ -89,12 +126,13 @@ thisForm.addEventListener('submit', async function (e) {
 
     const results = await response.json();
     if(results.status == "00"){ 
-        var loadnya = '<p style="color:blue"><b>'+results.message+'</b></p>'
+        var notif = '<p style="color:blue"><b>'+results.pesan+' '+results.fileName+'</b></p>'
     } else {
-        var loadnya = '<p style="color:red"><b>'+results.message+'</b></p>'
+        var notif = '<p style="color:red"><b>'+results.pesan+'</b></p>'
     }
     
-    document.getElementById("data").innerHTML=loadnya;
+    document.getElementById("notif").innerHTML=notif;
+    getData();
 });
 
 </script>

@@ -85,7 +85,7 @@ let host = "http://caricapps.herokuapp.com";
                 temp+="<td>"+data[i].created_at+"</td>";
                 temp+="<td>"+data[i].nominal+"</td>";
                 temp+="<td>"+data[i].catatan+"</td>";
-                temp+="<td><a href='../upload/"+data[i].name+"' target='_blank'><img src='../upload/"+data[i].name+"' width='50' height='60'/></a></td>";
+                temp+="<td><a href='../bukti/"+data[i].name+"' target='_blank'><img src='../bukti/"+data[i].name+"' width='50' height='60'/></a></td>";
             }
         }
         catch(err) {

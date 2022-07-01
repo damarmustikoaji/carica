@@ -13,6 +13,7 @@ RewriteRule ^kebutuhan/riwayat/([^/]+)/?$ riwayat.php?page=$1 [L]
 RewriteRule ^kebutuhan/riwayat riwayat.php
 RewriteRule ^upload/file upload.php
 RewriteRule ^upload/list upload_list.php [NC,L]
+RewriteRule ^pengeluaran/total pengeluaran.php [NC,L]
 
 Options -Indexes
 <IfModule mod_headers.c>
