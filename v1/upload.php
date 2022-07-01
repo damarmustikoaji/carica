@@ -52,38 +52,39 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                 $valid_extensions = array('jpeg', 'jpg', 'png', 'gif', 'heic'); 
                                 
                 // allow valid image file formats
-                if(in_array($fileExt, $valid_extensions))
-                {				
+                // if(in_array($fileExt, $valid_extensions))
+                // {				
                     //check file not exist our upload folder path
-                    if(!file_exists($upload_path . $fileName))
-                    {
+                    // if(!file_exists($upload_path . $fileName))
+                    // {
                         // check file size '5MB' 10mb
-                        if($fileSize < 50000000){
+                        // if($fileSize < 50000000){
                             move_uploaded_file($tempPath, $upload_path . $fileName); // move file from system temporary path to our upload folder path 
-                        }
-                        else{		
-                            $response = array("message" => "Sorry, your file is too large, please upload 5 MB size", "status" => "99");
-                        }
-                    }
-                    else
-                    {		
-                        $response = array("message" => "Sorry, file already exists check upload folder", "status" => "99");
-                    }
-                }
-                else
-                {		
-                    $response = array("message" => "Sorry, only JPG, JPEG, PNG & GIF & HEIC files are allowed", "status" => "99");	
-                }
-            }
+                        // }
+                        // else{		
+                        //     $response = array("message" => "Sorry, your file is too large, please upload 5 MB size", "status" => "99");
+                        // }
+                    // }
+                    // else
+                    // {		
+                        // $response = array("message" => "Sorry, file already exists check upload folder", "status" => "99");
+                    // }
+                // }
+                // else
+                // {		
+                    // $response = array("message" => "Sorry, only JPG, JPEG, PNG & GIF & HEIC files are allowed", "status" => "99");	
+                // }
+            // }
                     
             // if no error caused, continue ....
-            if(!isset($response))
-            {
+            // if(!isset($response))
+            // {
                 $query = mysqli_query($connection,'INSERT into pengeluaran (name, catatan, nominal) VALUES("'.$fileName.'", "'.$catatan.'", "'.$nominal.'")');
                         
-                $response = array("message" => "Image Uploaded Successfully", "status" => "00");	
-            }
+                $response = array("message" => "Image Uploaded Successfully", "status" => "00", "tempPath" => $tempPath, "upload_path" => $upload_path, "fileName" => $fileName);	
+            // }
                 $statusCode="HTTP/1.0 201 Created";
+            }
         header($statusCode);
         echo json_encode($response);
     }
