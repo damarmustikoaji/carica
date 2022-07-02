@@ -59,10 +59,17 @@ $request_token = keywordnya($_SERVER['HTTP_TOKEN']);
                     {
                         // check file size '5MB' 10mb
                         if($fileSize < 50000000){
-                            move_uploaded_file($tempPath, $upload_path . $fileName); // move file from system temporary path to our upload folder path 
-                            $query = mysqli_query($connection,'INSERT into pengeluaran (name, catatan, nominal) VALUES("'.$fileName.'", "'.$catatan.'", '.$nominal.')');
+                            $temp = explode(".", $fileName);
+                            $newfilename = round(microtime(true)) . '.' . end($temp);
+                            if($fileExt == 'heic') {
+                                $newExtension = 'png';
+                                $info = pathinfo($newfilename);
+                                $newfilename = $info['dirname']."/".$info['filename'].'.'.$newExtension;
+                            }
+                            move_uploaded_file($tempPath, $upload_path . $newfilename); // move file from system temporary path to our upload folder path 
+                            $query = mysqli_query($connection,'INSERT into pengeluaran (name, catatan, nominal) VALUES("'.$newfilename.'", "'.$catatan.'", '.$nominal.')');
                             $statusCode="HTTP/1.0 201 Created";
-                            $response = array("pesan" => "Image Uploaded Successfully", "status" => "00", "fileName" => $fileName, "tempPath" => $tempPath, "fileSize" => $fileSize, "upload_path" => $upload_path );
+                            $response = array("pesan" => "Image Uploaded Successfully", "status" => "00", "fileName" => $fileName, "newfilename" => $newfilename, "tempPath" => $tempPath, "fileSize" => $fileSize, "upload_path" => $upload_path );
                         }
                         else{		
                             $statusCode="HTTP/1.0 422 Unprocessable Entity";
