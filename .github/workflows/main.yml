@@ -2,8 +2,6 @@ name: Deployment
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 env:
   CARICAPPS_URL: ${{ secrets.CARICAPPS_URL }}
@@ -23,6 +21,20 @@ jobs:
  
   health:
       needs: deploy
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Check Health
+          run: curl --location --request GET '${{secrets.CARICAPPS_URL}}/v1/ping'
+  at-api:
+      needs: health
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Check Health
+          run: curl --location --request GET '${{secrets.CARICAPPS_URL}}/v1/ping'
+  at-web:
+      needs: health
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
