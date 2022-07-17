@@ -28,9 +28,9 @@ jobs:
           uses: techulus/push-github-action@1.0.0
           env:
             API_KEY: ${{ secrets.push_techulus_api_key }}
-            MESSAGE: "Test notification from GitHub 🧪"
-            TITLE: Testing
-            LINK: https://github.com/techulus/push-github-action
+            MESSAGE: "Hello Carica is UP!!!"
+            TITLE: Carica UP
+            LINK: https://github.com/damarmustikoaji/carica/actions/runs/${{ github.run_id }}
  
   health:
       needs: deploy
