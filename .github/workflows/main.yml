@@ -20,7 +20,7 @@ jobs:
       - run: chmod -R 777 bukti
       
   alert:
-      needs: deploy
+      needs: [deploy, health]
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
           run: curl --location --request GET '${{secrets.CARICAPPS_URL}}/v1/ping'
           
   at-api:
-      needs: health
+      needs: deploy
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
@@ -49,7 +49,7 @@ jobs:
           run: curl --location --request GET '${{secrets.CARICAPPS_URL}}/v1/ping'
           
   at-web:
-      needs: health
+      needs: deploy
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
