@@ -20,7 +20,7 @@ jobs:
       - run: chmod -R 777 bukti
       
   alert:
-      needs: [check-health, at-api, at-web]
+      needs: [deploy, check-health]
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
@@ -50,6 +50,14 @@ jobs:
           
   at-web:
       needs: deploy
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v2
+        - name: Check Health
+          run: curl --location --request GET '${{secrets.CARICAPPS_URL}}/v1/ping'
+          
+  performance-test-services:
+      needs: check-health
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
